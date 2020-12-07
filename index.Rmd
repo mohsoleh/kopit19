@@ -6,3 +6,41 @@ title: "Home | Kopit19"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyverse)
+library(cluster)
+library(factoextra)
+library(gridExtra)
+```
+
+```{r}
+#1 load data covid-19 di kab Pamekasan
+data <- read.csv('data/pamekasan.csv')
+view(data)
+```
+
+```{r}
+#2 ambil data numerik
+new_data <- data[,-1]
+summary(new_data)
+```
+```{r}
+#3 hitung jarak dari masing-masing data
+distance <- get_dist(new_data)
+distance
+fviz_dist(distance, gradient=list(low="green",mid="white",high="red"))
+```
+
+```{r}
+#4 membuat klasterinf menjadi 2 kelompok
+klaster <- kmeans(new_data, centers=2, nstart=25)
+klaster
+```
+
+```{r}
+#5 Membuat data frame untuk klaster
+k = data.frame(klaster$cluster)
+View(k)
+k
+fviz_cluster(klaster, data = new_data)
+```
