@@ -1,0 +1,10 @@
+name: "Kopit19"
+output_dir: "sites"
+navbar:
+  title: "Kopit19"
+  left:
+    - text: "Home"
+      href: index.html
+output:
+  html_document:
+theme: cosmo
