@@ -6,17 +6,21 @@ title: "Home | Kopit19"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ```{r}
 library(tidyverse)
 library(cluster)
 library(factoextra)
 library(gridExtra)
+library(leaflet)
+library(jsonlite)
+library(maps)
 ```
 
 ```{r}
 #1 load data covid-19 di kab Pamekasan
 data <- read.csv('data/pamekasan.csv')
-view(data)
+print(data)
 ```
 
 ```{r}
@@ -43,4 +47,34 @@ k = data.frame(klaster$cluster)
 View(k)
 k
 fviz_cluster(klaster, data = new_data)
+```
+
+```{r}
+mapStates = map("state", fill = TRUE, plot = FALSE)
+leaflet(data = mapStates) %>% addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+```
+
+```{r}
+geojson <- readLines("data/us-states.js", warn = FALSE) %>%
+  paste(collapse = "\n") %>%
+  fromJSON(simplifyVector = FALSE)
+
+geojson$style = list(stroke = FALSE, opacity = 1)
+
+# Add density info
+densities <- sapply(geojson$features, function(x) { x$properties$density })
+pal <- colorQuantile("Greens", densities)
+geojson$features <- lapply(geojson$features, function(feat) {
+  feat$properties$style <- list(fillColor = pal(feat$properties$density))
+  feat
+})
+
+#-7.17, 113.47
+
+leaflet() %>%
+  setView(lng = -7.17, lat = 113.47, zoom = 4) %>%
+  addProviderTiles("Stamen.Toner") %>%
+  addGeoJSON(geojson) %>%
+  addMarkers(lat = 113.4379639, lng = -7.1547151, popup = "Wrigley Field -- Home of the Cubs!")
 ```
