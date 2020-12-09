@@ -45,7 +45,6 @@ fviz_dist(distance, gradient=list(low="green",mid="white",high="red"))
 klaster <- kmeans(new_data, centers=2, nstart=25)
 #klaster
 ```
-### Visualisasi Klastering Data Covid-19 
 
 ```{r echo=FALSE, message=FALSE}
 #5 Membuat data frame untuk klaster
