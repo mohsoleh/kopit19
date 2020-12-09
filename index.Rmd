@@ -7,6 +7,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
+library(dplyr)
 library(tidyverse)
 library(cluster)
 library(factoextra)
@@ -14,16 +15,17 @@ library(gridExtra)
 library(leaflet)
 library(jsonlite)
 library(maps)
+library(knitr)
 ```
 
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, results='asis'}
 #1 load data covid-19 di kab Pamekasan
 data <- read.csv('data/pamekasan.csv')
-print(data)
+kable(data)
 ```
 
 ### Statistik Data Covid-19 Kabupaten Pamekasan
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE}
 #2 ambil data numerik
 new_data <- data[,-1]
 summary(new_data)
@@ -41,7 +43,7 @@ fviz_dist(distance, gradient=list(low="green",mid="white",high="red"))
 ```{r echo=FALSE, message=FALSE}
 #4 membuat klasterinf menjadi 2 kelompok
 klaster <- kmeans(new_data, centers=2, nstart=25)
-klaster
+#klaster
 ```
 ### Visualisasi Klastering Data Covid-19 
 
@@ -55,7 +57,9 @@ fviz_cluster(klaster, data = new_data)
 ### Visualisasi Data Covid-19
 
 ```{r echo=FALSE, message=FALSE}
-mapStates = map("state", fill = TRUE, plot = FALSE)
-leaflet(data = mapStates) %>% addTiles() %>%
-  addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+#113.4697,-7.1581
+leaflet() %>%
+  setView(lng = 113.4697, lat = -7.1581, zoom = 13) %>%
+  addTiles() 
+  #addMarkers(lng = 113.4697, lat = -7.1581, popup = "Kabupaten Pamekasan")
 ```
