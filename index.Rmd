@@ -3,7 +3,7 @@ title: "Data Covid-19 Kabupaten Pamekasan"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -42,23 +42,16 @@ fviz_dist(distance, gradient=list(low="green",mid="white",high="red"))
 ### Klastering Data Covid-19 Kab. Pamekasan
 ```{r echo=FALSE, message=FALSE}
 #4 membuat klasterinf menjadi 2 kelompok
-klaster <- kmeans(new_data, centers=2, nstart=25)
-#klaster
+klaster <- kmeans(new_data, centers=3, nstart=25)
+klaster
 ```
 
 ```{r echo=FALSE, message=FALSE}
 #5 Membuat data frame untuk klaster
 k = data.frame(klaster$cluster)
-#print(k)
+print(k)
 fviz_cluster(klaster, data = new_data)
 ```
 
 ### Visualisasi Data Covid-19
-
-```{r echo=FALSE, message=FALSE}
-#113.4697,-7.1581
-leaflet() %>%
-  setView(lng = 113.4697, lat = -7.1581, zoom = 13) %>%
-  addTiles() 
-  #addMarkers(lng = 113.4697, lat = -7.1581, popup = "Kabupaten Pamekasan")
-```
+![](data/peta.png)
