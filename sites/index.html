@@ -388,35 +388,48 @@ $(document).ready(function () {
 ##  3rd Qu.: 28.00   3rd Qu.:87486  
 ##  Max.   :184.00   Max.   :93896</code></pre>
 </div>
+<div id="grafik-data" class="section level3">
+<h3>Grafik data</h3>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="analisis-korelasi" class="section level3">
+<h3>Analisis Korelasi</h3>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  new_data$Jumlah_Penduduk and data$Positif
+## t = 1.5797, df = 11, p-value = 0.1425
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.1585276  0.7930930
+## sample estimates:
+##       cor 
+## 0.4300182</code></pre>
+</div>
+<div id="model-regresi-linear" class="section level3">
+<h3>Model Regresi Linear</h3>
+<pre><code>## 
+## Call:
+## lm(formula = data$Jumlah_Penduduk ~ data$Positif)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -53756  -3917    246  19167  28096 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   58122.4     8622.9    6.74  3.2e-05 ***
+## data$Positif    215.7      136.5    1.58    0.142    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 25000 on 11 degrees of freedom
+## Multiple R-squared:  0.1849, Adjusted R-squared:  0.1108 
+## F-statistic: 2.496 on 1 and 11 DF,  p-value: 0.1425</code></pre>
+</div>
 <div id="jarak-masing-masing-data" class="section level3">
 <h3>Jarak Masing-masing Data</h3>
-<pre><code>##             1          2          3          4          5          6          7
-## 2  20004.1332                                                                  
-## 3  36458.0108 56462.0903                                                       
-## 4  26414.3710  6410.3501 62872.2245                                            
-## 5  22619.0149  2616.8733 59077.0000  3798.6288                                 
-## 6  20757.0163   759.4801 57215.0000  5659.4350  1862.0000                      
-## 7  12612.0381  7392.7316 49070.0001 13803.0593 10007.0012  8145.0015           
-## 8   6529.0196 26533.1493 29929.0024 32943.3694 29148.0017 27286.0018 19141.0059
-## 9  28135.0194 48139.1167  8323.0015 54549.2743 50754.0005 48892.0005 40747.0000
-## 10  2568.2385 17436.3345 39026.0006 23846.6421 20051.0020 18189.0022 10044.0008
-## 11 17870.0305  2136.6310 54328.0002  8545.7513  4749.0052  2887.0085  5258.0004
-## 12 60959.0095 80963.0707 24501.0007 87373.1733 83578.0004 81716.0004 73571.0001
-## 13  7172.0854 27176.2146 29286.0008 33586.4559 29791.0014 27929.0015 19784.0004
-##             8          9         10         11         12
-## 2                                                        
-## 3                                                        
-## 4                                                        
-## 5                                                        
-## 6                                                        
-## 7                                                        
-## 8                                                        
-## 9  21606.0067                                            
-## 10  9097.0198 30703.0001                                 
-## 11 24399.0059 46005.0000 15302.0001                      
-## 12 54430.0030 32824.0000 63527.0000 78829.0000           
-## 13   643.2807 20963.0001  9740.0000 25042.0001 53787.0000</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="klastering-data-covid-19-kab.-pamekasan" class="section level3">
 <h3>Klastering Data Covid-19 Kab. Pamekasan</h3>
@@ -453,7 +466,7 @@ $(document).ready(function () {
 ## 11               3
 ## 12               1
 ## 13               2</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="visualisasi-data-covid-19" class="section level3">
 <h3>Visualisasi Data Covid-19</h3>

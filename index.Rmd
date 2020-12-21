@@ -30,12 +30,30 @@ kable(data)
 new_data <- data[,-1]
 summary(new_data)
 ```
+### Grafik data
+```{r echo=FALSE, message=FALSE}
+library(ggplot2)
+ggplot(data = new_data) +
+  aes(x = Jumlah_Penduduk, y = Positif) +
+  geom_point(color = "#f781bf") +
+  geom_smooth(span = 0.58) +
+  theme_grey()
+```
+
+### Analisis Korelasi
+```{r echo=FALSE, message=FALSE}
+cor.test(new_data$Jumlah_Penduduk,data$Positif,method="pearson")
+```
+### Model Regresi Linear
+```{r echo=FALSE, message=FALSE}
+summary(lm(data$Jumlah_Penduduk~data$Positif))
+```
+
 ### Jarak Masing-masing Data
 
 ```{r echo=FALSE, message=FALSE}
 #3 hitung jarak dari masing-masing data
 distance <- get_dist(new_data)
-distance
 fviz_dist(distance, gradient=list(low="green",mid="white",high="red"))
 ```
 
